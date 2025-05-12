@@ -289,7 +289,8 @@ console.log(Number.isInteger(23)); // true
 console.log(Number.isInteger(23.0)); // true
 console.log(Number.isInteger(23 / 0)); // false
 */
-
+/*
+// 182. Math and Rounding
 console.log(Math.sqrt(25)); // 5
 console.log(25 ** (1 / 2)); // 5
 console.log(8 ** (1 / 3)); // 2
@@ -343,3 +344,32 @@ console.log((2.7).toFixed(0)); // 3 ===> toFixed will always return a string and
 console.log((2.7).toFixed(3)); // 2.700
 console.log((2.345).toFixed(2)); // 2.35
 console.log(+(2.345).toFixed(2)); // 2.35 in Number
+*/
+
+// 183. The Remainder Operator
+
+console.log(5 % 2); // 1
+console.log(5 / 2); // 5 = 2 * 2 + 1
+
+console.log(8 % 3); // 2
+console.log(8 / 3); // 8 = 2 * 3 + 2 ==> 2.6666666666666665
+
+console.log(6 % 2); // 0
+console.log(6 / 2); // 3
+
+console.log(7 % 2); // 1
+console.log(7 / 2); // 3.5
+
+// const isEven = num => `${num} is ${num % 2 === 0 ? 'even' : 'odd'}`;
+const isEven = num => num % 2 === 0;
+console.log(isEven(8));
+console.log(isEven(23));
+console.log(isEven(514));
+
+labelBalance.addEventListener('click', function () {
+  [...document.querySelectorAll('.movements__row')].forEach(function (row, i) {
+    if (i % 2 === 0) row.style.backgroundColor = 'lightgrey';
+    // 0,3,6,9
+    if (i % 3 === 0) row.style.backgroundColor = 'yellow';
+  });
+});
