@@ -375,6 +375,7 @@ labelBalance.addEventListener('click', function () {
 });
 */
 
+/*
 // 184. Numeric Separators
 
 const diameter = 287_460_000_000;
@@ -391,3 +392,41 @@ console.log(PI);
 
 console.log(Number('230_000')); // NaN
 console.log(parseInt('230_000')); // 230
+*/
+
+// 185. Working with BigInt
+
+console.log(2 ** 53 - 1); // The biggest number that JavaScript can safely represent
+console.log(Number.MAX_SAFE_INTEGER);
+console.log(2 ** 53 + 1);
+console.log(2 ** 53 + 2);
+console.log(2 ** 53 + 3);
+console.log(2 ** 53 + 4);
+
+console.log(7473097234072034709237750974029569084236592n);
+console.log(BigInt(74730972));
+
+// Operations
+console.log(10000n + 10000n);
+console.log(
+  357347537458738947589347589734894573894n *
+    98237482376486235874872354872356487n
+);
+// console.log(Math.sqrt(16n)); // Error
+
+const huge = 26982374589789472390847n;
+const num = 23;
+console.log(huge + BigInt(num));
+
+// Exeptions
+console.log(20n > 15); // true
+console.log(20n === 20); // false
+console.log(typeof 20n); // bigint
+console.log(20n === 20); // false
+console.log(20n == 20); // true
+
+console.log(huge + ' is REALLY big!!!');
+
+// Divisions
+console.log(11n / 3n);
+console.log(10 / 3);
