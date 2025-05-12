@@ -345,7 +345,7 @@ console.log((2.7).toFixed(3)); // 2.700
 console.log((2.345).toFixed(2)); // 2.35
 console.log(+(2.345).toFixed(2)); // 2.35 in Number
 */
-
+/*
 // 183. The Remainder Operator
 
 console.log(5 % 2); // 1
@@ -373,3 +373,21 @@ labelBalance.addEventListener('click', function () {
     if (i % 3 === 0) row.style.backgroundColor = 'yellow';
   });
 });
+*/
+
+// 184. Numeric Separators
+
+const diameter = 287_460_000_000;
+console.log(diameter);
+
+const price = 345_999;
+console.log(price);
+
+const transferFee = 15_00;
+const transferFee2 = 1_500;
+
+const PI = 3.14_15;
+console.log(PI);
+
+console.log(Number('230_000')); // NaN
+console.log(parseInt('230_000')); // 230
