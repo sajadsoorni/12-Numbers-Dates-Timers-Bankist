@@ -393,7 +393,7 @@ console.log(PI);
 console.log(Number('230_000')); // NaN
 console.log(parseInt('230_000')); // 230
 */
-
+/*
 // 185. Working with BigInt
 
 console.log(2 ** 53 - 1); // The biggest number that JavaScript can safely represent
@@ -430,3 +430,43 @@ console.log(huge + ' is REALLY big!!!');
 // Divisions
 console.log(11n / 3n);
 console.log(10 / 3);
+*/
+
+// 186. Creating Dates
+
+// Create a date
+/*
+const now = new Date();
+console.log(now);
+
+console.log(new Date('May 13 2025 10:13:08 '));
+console.log(new Date('December 24, 2015')); // Thu Dec 24 2015 00:00:00 GMT+0000 (Greenwich Mean Time)
+console.log(new Date(account1.movementsDates[0]));
+
+console.log(new Date(2037, 10, 19, 15, 23, 5)); // Thu Nov 19 2037 15:23:05 GMT+0000 (Greenwich Mean Time)
+console.log(new Date(2037, 10, 38)); // Tue Dec 08 2037 00:00:00 GMT+0000 (Greenwich Mean Time)
+
+console.log(new Date(0)); // Thu Jan 01 1970 01:00:00 GMT+0100 (Greenwich Mean Time)
+console.log(new Date(3 * 24 * 60 * 60 * 1000));
+// console.log(new Date(259200000));
+*/
+
+// Working with dates
+const future = new Date(2037, 10, 19, 15, 23);
+console.log(future);
+console.log(future.getFullYear());
+console.log(future.getMonth());
+console.log(future.getDate());
+console.log(future.getDay());
+console.log(future.getHours());
+console.log(future.getMinutes());
+console.log(future.getSeconds());
+console.log(future.toISOString());
+console.log(future.getTime());
+
+console.log(new Date(2142256980000));
+
+console.log(Date.now());
+
+future.setFullYear(2040);
+console.log(future);
