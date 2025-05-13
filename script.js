@@ -81,19 +81,29 @@ const inputClosePin = document.querySelector('.form__input--pin');
 /////////////////////////////////////////////////
 // Functions
 
-const displayMovements = function (movements, sort = false) {
+const displayMovements = function (acc, sort = false) {
   containerMovements.innerHTML = '';
 
-  const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
+  const movs = sort
+    ? acc.movements.slice().sort((a, b) => a - b)
+    : acc.movements;
 
   movs.forEach(function (mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
+    const date = new Date(acc.movementsDates[i]);
+    const day = `${date.getDate()}`.padStart(2, '0');
+    const month = `${date.getMonth() + 1}`.padStart(2, '0');
+    const year = date.getFullYear();
+
+    const displayDate = `${day}/${month}/${year}`;
 
     const html = `
       <div class="movements__row">
         <div class="movements__type movements__type--${type}">${
       i + 1
     } ${type}</div>
+        <div class="movements__date">${displayDate}</div>
+       
         <div class="movements__value">${mov.toFixed(2)}€</div>
       </div>
     `;
@@ -101,6 +111,7 @@ const displayMovements = function (movements, sort = false) {
     containerMovements.insertAdjacentHTML('afterbegin', html);
   });
 };
+//  ${new Intl.DateTimeFormat(acc.locale ).format(new Date(acc.movementsDates[i]))}
 
 const calcDisplayBalance = function (acc) {
   acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
@@ -142,7 +153,7 @@ createUsernames(accounts);
 
 const updateUI = function (acc) {
   // Display movements
-  displayMovements(acc.movements);
+  displayMovements(acc);
 
   // Display balance
   calcDisplayBalance(acc);
@@ -162,7 +173,6 @@ btnLogin.addEventListener('click', function (e) {
   currentAccount = accounts.find(
     acc => acc.username === inputLoginUsername.value
   );
-  console.log(currentAccount);
 
   if (currentAccount?.pin === +inputLoginPin.value) {
     // Display UI and message
@@ -170,6 +180,18 @@ btnLogin.addEventListener('click', function (e) {
       currentAccount.owner.split(' ')[0]
     }`;
     containerApp.style.opacity = 100;
+
+    // Create current date and time
+    setInterval(() => {
+      const now = new Date();
+      const day = `${now.getDate()}`.padStart(2, '0');
+      const month = `${now.getMonth() + 1}`.padStart(2, '0');
+      const year = now.getFullYear();
+      const hour = `${now.getHours()}`.padStart(2, '0');
+      const minute = `${now.getMinutes()}`.padStart(2, '0');
+      const seconds = `${now.getSeconds()}`.padStart(2, '0');
+      labelDate.textContent = `${day}/${month}/${year} - ${hour}:${minute}:${seconds}`;
+    }, 1000);
 
     // Clear input fields
     inputLoginUsername.value = inputLoginPin.value = '';
@@ -198,6 +220,10 @@ btnTransfer.addEventListener('click', function (e) {
     currentAccount.movements.push(-amount);
     receiverAcc.movements.push(amount);
 
+    // Add transfer date
+    currentAccount.movementsDates.push(new Date().toISOString());
+    receiverAcc.movementsDates.push(new Date().toISOString());
+
     // Update UI
     updateUI(currentAccount);
   }
@@ -211,6 +237,8 @@ btnLoan.addEventListener('click', function (e) {
   if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
     // Add movement
     currentAccount.movements.push(amount);
+    // add loan date
+    currentAccount.movementsDates.push(new Date().toISOString());
 
     // Update UI
     updateUI(currentAccount);
@@ -432,10 +460,10 @@ console.log(11n / 3n);
 console.log(10 / 3);
 */
 
+/*
 // 186. Creating Dates
 
 // Create a date
-/*
 const now = new Date();
 console.log(now);
 
@@ -449,7 +477,6 @@ console.log(new Date(2037, 10, 38)); // Tue Dec 08 2037 00:00:00 GMT+0000 (Green
 console.log(new Date(0)); // Thu Jan 01 1970 01:00:00 GMT+0100 (Greenwich Mean Time)
 console.log(new Date(3 * 24 * 60 * 60 * 1000));
 // console.log(new Date(259200000));
-*/
 
 // Working with dates
 const future = new Date(2037, 10, 19, 15, 23);
@@ -470,3 +497,6 @@ console.log(Date.now());
 
 future.setFullYear(2040);
 console.log(future);
+*/
+
+// 187. Adding Dates to "Bankist" App
