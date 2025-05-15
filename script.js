@@ -435,7 +435,7 @@ console.log(10 / 3);
 // 186. Creating Dates
 
 // Create a date
-/*
+
 const now = new Date();
 console.log(now);
 
@@ -449,7 +449,7 @@ console.log(new Date(2037, 10, 38)); // Tue Dec 08 2037 00:00:00 GMT+0000 (Green
 console.log(new Date(0)); // Thu Jan 01 1970 01:00:00 GMT+0100 (Greenwich Mean Time)
 console.log(new Date(3 * 24 * 60 * 60 * 1000));
 // console.log(new Date(259200000));
-*/
+
 
 // Working with dates
 const future = new Date(2037, 10, 19, 15, 23);
